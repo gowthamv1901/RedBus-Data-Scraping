@@ -1,8 +1,7 @@
 import streamlit as st
 import mysql.connector
 import pandas as pd
-from streamlit_option_menu import option_menu  # For navigation
-
+from streamlit_option_menu import option_menu  
 # Database connection
 mydb = mysql.connector.connect(
     host="localhost",
@@ -16,7 +15,7 @@ if mydb.is_connected():
 
 mycursor = mydb.cursor(buffered=True)
 
-# CSS for styling (including background color and label color)
+
 st.markdown(
     """
     <style>
@@ -40,7 +39,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Navigation menu for multi-page layout
 with st.sidebar:
     selected_page = option_menu(
         "Main Menu",
@@ -50,9 +48,8 @@ with st.sidebar:
         default_index=0,
     )
 
-# Home Page
 if selected_page == "Home":
-    st.image(r"C:\Users\DELL\Desktop\Logo\rdc-redbus-logo.png", width=100)  # You can adjust the width
+    st.image(r"C:\Users\DELL\Desktop\Logo\rdc-redbus-logo.png", width=100)  
     st.markdown("<h1 style='color:white;'>Welcome to the RedBus Project</h1>", unsafe_allow_html=True)
     st.markdown("""
     <p style='color:white;'>
@@ -70,10 +67,8 @@ if selected_page == "Home":
     <p style='color:white;'>Navigate to the "Bus Filter Form" from the sidebar to get started.</p>
     """, unsafe_allow_html=True)
 
-# Bus Filter Form Page
 if selected_page == "Bus Filter Form":
 
-    # Fetch available 'From_Place', 'To_Place', and 'StateName' from the database
     mycursor.execute("SELECT DISTINCT StateName FROM final_bus_details")
     states = [state[0] for state in mycursor.fetchall()]
 
@@ -83,38 +78,32 @@ if selected_page == "Bus Filter Form":
     mycursor.execute("SELECT DISTINCT To_Place FROM final_bus_details")
     to_places = [place[0] for place in mycursor.fetchall()]
 
-    # Form for user inputs
     with st.form("bus_filter_form"):
-        st.image(r"C:\Users\DELL\Desktop\Logo\rdc-redbus-logo.png", width=100)  # You can adjust the width
+        st.image(r"C:\Users\DELL\Desktop\Logo\rdc-redbus-logo.png", width=100)  
         st.markdown(f"## <span style='color:white'>Bus Filter Form</span>", unsafe_allow_html=True)
         
-        # State Dropdown
         selected_state = st.selectbox("Select State", states)
 
-        # From Place Dropdown
         selected_from_place = st.selectbox("Select Departure Place", from_places)
         
-        # To Place Dropdown
         selected_to_place = st.selectbox("Select Destination Place", to_places)
         
-        # Rating Slider
         selected_rating = st.slider('Select Minimum Bus Rating', min_value=0.0, max_value=5.0, value=3.0, step=0.1)
         
-        # Time Filter Slider
         time_filter = st.slider("Select Time (HH:MM) for Departure Filter (After selected time)", 
                                 min_value=0, max_value=23, value=18, step=1)
         
-        # Ticket Price Slider
+        
         min_price, max_price = st.slider('Select Ticket Price Range', min_value=100, max_value=5000, value=(300, 2000), step=100)
 
-        # Submit button
+        
         submit_button = st.form_submit_button(label='Submit')
 
-    # If form is submitted, filter data accordingly
+    
     if submit_button:
         selected_time = f"{time_filter:02d}:00:00"
 
-        # Debug output to check query parameters
+        
         st.write("Debugging Info:")
         st.write(f"State: {selected_state}")
         st.write(f"From Place: {selected_from_place}")
@@ -123,7 +112,7 @@ if selected_page == "Bus Filter Form":
         st.write(f"Time: {selected_time}")
         st.write(f"Price Range: {min_price} - {max_price}")
 
-        # SQL query to filter based on user input
+        
         query = f"""
             SELECT BusName, BusType, BusDepartureTime, BusReachingTime, TicketPrice, BusRating
             FROM final_bus_details 
@@ -135,13 +124,13 @@ if selected_page == "Bus Filter Form":
             AND CAST(REPLACE(TicketPrice, 'INR ', '') AS DECIMAL(10,2)) BETWEEN {min_price} AND {max_price}
         """
 
-        # Debugging: Output the query
+        
         st.write(f"Executed Query: {query}")
 
         try:
             mycursor.execute(query)
 
-            # Fetch the result and create a DataFrame
+            
             filtered_data = mycursor.fetchall()
 
             if filtered_data:
