@@ -214,12 +214,6 @@ The app has custom **CSS** styling for:
 
 - ![image](https://github.com/user-attachments/assets/de890aa5-140c-4ca8-81ba-5f61aacae6b0)
 
-## Future Enhancements
-
-- **Date Filtering**: Add a date picker to filter buses by specific travel dates.
-- **Sorting**: Allow users to sort results by price, rating, or departure time.
-- **Pagination**: Add pagination for large result sets to improve loading times.
-- **Integration with Live Data APIs**: For real-time bus information and updates.
 
 
 
