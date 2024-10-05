@@ -135,15 +135,7 @@ The main goal of the application is to provide a user-friendly interface where u
 - **Design and Styling**: Custom CSS for styling the app interface
 - **Navigation**: Streamlit Option Menu for sidebar navigation
 
-## Project Structure
 
-```
-.
-├── app.py              # Main application script
-├── README.md           # Project documentation (this file)
-└── resources
-    └── logo.png        # Project logo (if available)
-```
 
 ## Installation and Setup
 
@@ -209,8 +201,18 @@ The app has custom **CSS** styling for:
 **Home Page:**
 - Displays the project introduction and instructions on how to use the app.
 
+- ![image](https://github.com/user-attachments/assets/e09b0b9c-0adb-42e7-8418-1e3497cd25b0)
+
+
 **Bus Filter Form:**
 - The user can fill in the state, places, and filter options to find relevant buses.
+- Before Submiting The Form:
+
+- ![image](https://github.com/user-attachments/assets/19cb22b1-cb2f-48de-9358-e63202db6a67)
+
+- After Submiting The Form:
+
+- ![image](https://github.com/user-attachments/assets/de890aa5-140c-4ca8-81ba-5f61aacae6b0)
 
 ## Future Enhancements
 
