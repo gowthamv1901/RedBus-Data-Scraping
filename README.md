@@ -12,7 +12,6 @@ This project is a Python-based web scraper designed to extract bus route and ser
 - [Usage](#usage)
 - [Output](#output)
 - [Limitations and Improvements](#limitations-and-improvements)
-- [License](#license)
 
 ## Features
 - Scrapes bus routes and service details from the RedBus website for different states in India.
@@ -112,9 +111,3 @@ The final output will be a CSV file `Bus_Details_data.csv` containing the follow
 - **Error Handling**: Currently, the script continues execution even if an error occurs for a particular state or bus route. Adding more granular error logging and handling can improve robustness.
 - **Captcha and Anti-Scraping**: RedBus or other similar websites might introduce Captcha or other anti-scraping mechanisms, which could block the scraper. Using proxies or browser automation tools like `Selenium` with headless mode can help overcome this.
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-Feel free to modify and contribute to this project. Happy scraping!
